@@ -8,7 +8,7 @@ We welcome contributions from the community! If you have any improvements or bug
 
 # License
 
-This project is licensed under the MIT License. You are free to use, modify, and distribute this project. However, any distribution must include a link to the original repository: https://github.com/yourusername/website-status-page.
+This project is licensed under the MIT License. You are free to use, modify, and distribute this project. However, any distribution must include a link to the original repository: [https://github.com/HackingDumpDrive/status](https://github.com/HackingDumpDrive/status).
 
 # Authors
 
