@@ -12,9 +12,9 @@ This project is licensed under the MIT License. You are free to use, modify, and
 
 # Authors
 
-[S1700](https://github.com/S1700)
+* [S1700](https://github.com/S1700)
 
 # Acknowledgments
 
-[updown.io](https://updown.io) for providing the inspiration and the API for this project.
-All contributors and users who support and use this project.
+* [updown.io](https://updown.io) for providing the inspiration and the API for this project.
+* All contributors and users who support and use this project.
