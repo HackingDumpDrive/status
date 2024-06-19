@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="HackingDumpDrive Status">
+        <meta name="keywords" content="HDD, HackingDumpDrive, hacking, tutorials, status">
+        <meta name="author" content="HackingDumpDrive">
+        <meta name="theme-color" content="#000000"/>
+        <link rel="icon" href="favicon.ico" type="image/png">
+        <link rel="stylesheet" href="style.css">
+        <meta property="og:title" content="HackingDumpDrive Status">
+        <meta property="og:description" content="HackingDumpDrive Website Status">
+        <meta property="og:image" content="favicon.ico">
+        <title>HackingDumpDrive Status</title>
+    </head>
+    <body>
+        <nav class="navbar">
+            <a href="https://hackingdumpdrive.org"><div class="title">HackingDumpDrive</div></a>
+            <a href="https://hackingdumpdrive.org">Home</a>
+            <a aria-label="Status" href="" style="padding-right: 10px;"><u>Status</u></a>
+            <div class="separator"></div>
+        </nav>
+        <div class="center">
+            <div class="clock" id="clock"></div>
+            <div class="titleline">
+                <div class="status-circle" id="statusCircle"></div>
+                <h2 class="centerhddtext"><a href="https://hackingdumpdrive.org">HackingDumpDrive</a></h2>
+            </div>
+            <div class="percent" id="percent"></div>
+            <div class="lastcheck" id="lastcheck">Last check at: </div>
+            <div class="nextcheck" id="nextcheck">Next check at: </div>
+            <div class="upsince" id="upsince">Up since: </div>
+            <div class="requestsS" id="requestsS"></div>
+        </div>
+        <div class="linecontainer">
+            <h3 class="text">Last 24HRs</h3>
+            <div class="line">
+            </div>
+        </div>
+        <div class="apdex">APDEX</div>
+        <div class="apdexCValue" id="apdex24"></div>
+        <div class="apdex24graphContainer"></div>
+        <div class="response">Response</div>
+        <div class="responseCValue" id="response24"></div>
+        <div class="response24graphContainer"></div>
+        <div class="npmgraphcontainer">
+            <div class="horizontal-bar">
+                <span class="location">Los Angeles, USA</span>
+                <div class="bar" id="bar1"></div>
+                <div class="bar" id="bar2"></div>
+                <div class="bar" id="bar3"></div>
+                <div class="bar" id="bar4"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Montreal, Canada</span>
+                <div class="bar" id="bar5"></div>
+                <div class="bar" id="bar6"></div>
+                <div class="bar" id="bar7"></div>
+                <div class="bar" id="bar8"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Roubaix, France</span>
+                <div class="bar" id="bar9"></div>
+                <div class="bar" id="bar10"></div>
+                <div class="bar" id="bar11"></div>
+                <div class="bar" id="bar12"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Frankfurt, Germany</span> 
+                <div class="bar" id="bar13"></div>
+                <div class="bar" id="bar14"></div>
+                <div class="bar" id="bar15"></div>
+                <div class="bar" id="bar16"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Helsinki, Finland</span>
+                <div class="bar" id="bar17"></div>
+                <div class="bar" id="bar18"></div>
+                <div class="bar" id="bar19"></div>
+                <div class="bar" id="bar20"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span  class="location">Singapore</span>
+                <div class="bar" id="bar21"></div>
+                <div class="bar" id="bar22"></div>
+                <div class="bar" id="bar23"></div>
+                <div class="bar" id="bar24"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Tokyo, Japan</span>
+                <div class="bar" id="bar25"></div>
+                <div class="bar" id="bar26"></div>
+                <div class="bar" id="bar27"></div>
+                <div class="bar" id="bar28"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Sydney, Autralia</span>
+                <div class="bar" id="bar29"></div>
+                <div class="bar" id="bar30"></div>
+                <div class="bar" id="bar31"></div>
+                <div class="bar" id="bar32"></div>
+            </div>
+        </div>
+        <div class="linecontainer">
+            <h3 class="text">Last Month</h3>
+            <div class="line">
+            </div>
+        </div>
+        <div class="apdex">APDEX</div>
+        <div class="apdexCValue" id="apdexMnth"></div>
+        <div class="apdex730graphContainer"></div>
+        <div  class="response">Response</div>
+        <div class="responseCValue" id="responseMnth"></div>
+        <div class="response730graphContainer"></div>
+        <div class="npmgraphcontainer">
+            <div class="horizontal-bar">
+                <span  class="location">Los Angeles, USA</span>
+                <div class="bar" id="bar33"></div>
+                <div class="bar" id="bar34"></div>
+                <div class="bar" id="bar35"></div>
+                <div class="bar" id="bar36"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Montreal, Canada</span>
+                <div class="bar" id="bar37"></div>
+                <div class="bar" id="bar38"></div>
+                <div class="bar" id="bar39"></div>
+                <div class="bar" id="bar40"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Roubaix, France</span>
+                <div class="bar" id="bar41"></div>
+                <div class="bar" id="bar42"></div>
+                <div class="bar" id="bar43"></div>
+                <div class="bar" id="bar44"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Frankfurt, Germany</span> 
+                <div class="bar" id="bar45"></div>
+                <div class="bar" id="bar46"></div>
+                <div class="bar" id="bar47"></div>
+                <div class="bar" id="bar48"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Helsinki, Finland</span>
+                <div class="bar" id="bar49"></div>
+                <div class="bar" id="bar50"></div>
+                <div class="bar" id="bar51"></div>
+                <div class="bar" id="bar52"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Singapore</span>
+                <div class="bar" id="bar53"></div>
+                <div class="bar" id="bar54"></div>
+                <div class="bar" id="bar55"></div>
+                <div class="bar" id="bar56"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Tokyo, Japan</span>
+                <div class="bar" id="bar57"></div>
+                <div class="bar" id="bar58"></div>
+                <div class="bar" id="bar59"></div>
+                <div class="bar" id="bar60"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Sydney, Autralia</span>
+                <div class="bar" id="bar61"></div>
+                <div class="bar" id="bar62"></div>
+                <div class="bar" id="bar63"></div>
+                <div class="bar" id="bar64"></div>
+            </div>
+        </div>
+        <div class="linecontainer">
+            <h3 class="text">All time</h3>
+            <div class="line">
+            </div>
+        </div>
+        <div class="apdex">APDEX</div>
+        <div class="apdexCValue" id="apdexAll"></div>
+        <div class="apdexAllTimeGraphContainer"></div>
+        <div class="response">Response</div>
+        <div class="responseCValue" id="responseAll"></div>
+        <div class="responseAllTimeGraphContainer"></div>
+        <div class="npmgraphcontainer">
+            <div class="horizontal-bar">
+                <span class="location">Los Angeles, USA</span>
+                <div class="bar" id="bar65"></div>
+                <div class="bar" id="bar66"></div>
+                <div class="bar" id="bar67"></div>
+                <div class="bar" id="bar68"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Montreal, Canada</span>
+                <div class="bar" id="bar69"></div>
+                <div class="bar" id="bar70"></div>
+                <div class="bar" id="bar71"></div>
+                <div class="bar" id="bar72"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Roubaix, France</span>
+                <div class="bar" id="bar73"></div>
+                <div class="bar" id="bar74"></div>
+                <div class="bar" id="bar75"></div>
+                <div class="bar" id="bar76"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Frankfurt, Germany</span> 
+                <div class="bar" id="bar77"></div>
+                <div class="bar" id="bar78"></div>
+                <div class="bar" id="bar79"></div>
+                <div class="bar" id="bar80"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Helsinki, Finland</span>
+                <div class="bar" id="bar81"></div>
+                <div class="bar" id="bar82"></div>
+                <div class="bar" id="bar83"></div>
+                <div class="bar" id="bar84"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Singapore</span>
+                <div class="bar" id="bar85"></div>
+                <div class="bar" id="bar86"></div>
+                <div class="bar" id="bar87"></div>
+                <div class="bar" id="bar88"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Tokyo, Japan</span>
+                <div class="bar" id="bar89"></div>
+                <div class="bar" id="bar90"></div>
+                <div class="bar" id="bar91"></div>
+                <div class="bar" id="bar92"></div>
+            </div>
+            <div class="horizontal-bar">
+                <span class="location">Sydney, Autralia</span>
+                <div class="bar" id="bar93"></div>
+                <div class="bar" id="bar94"></div>
+                <div class="bar" id="bar95"></div>
+                <div class="bar" id="bar96"></div>
+            </div>
+        </div>
+        <div id="log" class="log">
+        </div>
+    </body>
+    <script src="functions.js"></script>
+    <div class="footer">
+        <p>Made with ♥ by <a href="https://hackingdumpdrive.org/e/viewacc?id=1">S1700</a></p>
+        <p>Data provided by the <a href="https://updown.io/">updown.io</a> API</p>
+        <p>This page is open source on <a href="https://github.com/HackingDumpDrive/status">GitHub</a></p>
+        <p>© 2023-2024 HackingDumpDrive. All rights reserved.</p>
+        <p>Found a problem? Want to provide a suggestion? <a href="mailto:support@hackingdumpdrive.org">Email us</a></p>
+    </div>
+</html>
