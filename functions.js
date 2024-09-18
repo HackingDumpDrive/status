@@ -57,24 +57,33 @@ const endpoints = {
 
 // Status circle
 const statusCircle = document.getElementById('statusCircle');
+const percent = document.getElementById('percent');
 async function setStatusColor(data) {
   if (!Array.isArray(data) || data.length === 0) {
     console.error('Invalid response format or empty data array for last status');
     return;
   }
 
-  const status = data[0].last_status;
-  const statusMap = {
-    200: { color: 'green', title: '200 OK' },
-    404: { color: 'orange', title: 'Not Found' },
-    500: { color: 'red', title: 'Server Error' },
-    503: { color: 'red', title: 'Server Error' },
-    504: { color: 'red', title: 'Server Error' },
-  };
+  const down = data[0].down;
+  if (down == true) {
+    percent.style.color = 'red';
+    statusCircle.style.backgroundColor = 'red';
+    statusCircle.setAttribute('title', data[0].error);
+  } else {
+    const status = data[0].last_status;
+    const statusMap = {
+      200: { color: 'green', title: '200 OK' },
+      404: { color: 'orange', title: 'Not Found?' },
+      500: { color: 'red', title: 'Internal Server Error' },
+      503: { color: 'red', title: 'Service unavailable' },
+      504: { color: 'red', title: 'Gateway timeout' },
+      524: { color: 'red', title: 'Timeout!' },
+    };
 
-  const { color = 'gray', title = 'Unknown' } = statusMap[status] || {};
-  statusCircle.style.backgroundColor = color;
-  statusCircle.setAttribute('title', title);
+    const { color = 'gray', title = 'Unknown' } = statusMap[status] || {};
+    statusCircle.style.backgroundColor = color;
+    statusCircle.setAttribute('title', title);
+  }
 }
 
 // Percent
@@ -182,6 +191,12 @@ function generateApdexGraph(data) {
     bar.style.height = `${(value / maxValue) * 100}%`;
     bar.style.left = `${index * 51 + 0}px`;
 
+    if (value >= 0.8 && value < 0.9) {
+      bar.style.backgroundColor = 'yellow';
+    } else if (value < 0.8) {
+      bar.style.backgroundColor = '#cc0003';
+    }
+
     const valueDisplay = document.createElement('div');
     valueDisplay.classList.add('apdex24value');
     valueDisplay.textContent = value.toFixed(2);
@@ -219,6 +234,16 @@ function generateResponseGraph(data3) {
     const bar = document.createElement('div');
     bar.classList.add('response24bar');
     bar.style.height = `${(value / maxValue) * 100}%`;
+
+    switch (labels[index]) {
+      case '2000ms':
+      case '4000ms':
+        bar.style.backgroundColor = 'yellow';
+        break;
+      case 'Fail':
+        bar.style.backgroundColor = '#cc0003';
+        break;
+    }
 
     const valueDisplay = document.createElement('div');
     valueDisplay.classList.add('response24value');
@@ -262,6 +287,12 @@ function generateApdex730Graph(data7) {
     bar.style.height = `${(value / maxValue) * 100}%`;
     bar.style.left = `${index * 42 + 0}px`;
 
+    if (value >= 0.8 && value < 0.9) {
+      bar.style.backgroundColor = 'yellow';
+    } else if (value < 0.8) {
+      bar.style.backgroundColor = '#cc0003';
+    }
+
     const valueDisplay = document.createElement('div');
     valueDisplay.classList.add('apdex730value');
     valueDisplay.textContent = value.toFixed(2);
@@ -286,7 +317,6 @@ function generateApdex730Graph(data7) {
   });
 }
 
-//Response Monthly graph
 function generateResponseGraph730(data7) {
   const response730graphContainer = document.querySelector('.response730graphContainer');
   const maxValue = Math.max(...data7);
@@ -299,6 +329,17 @@ function generateResponseGraph730(data7) {
     const bar = document.createElement('div');
     bar.classList.add('response730bar');
     bar.style.height = `${(value / maxValue) * 100}%`;
+
+    // Apply color based on the label
+    switch (labels[index]) {
+      case '2000ms':
+      case '4000ms':
+        bar.style.backgroundColor = 'yellow';
+        break;
+      case 'Fail':
+        bar.style.backgroundColor = '#cc0003';
+        break;
+    }
 
     const valueDisplay = document.createElement('div');
     valueDisplay.classList.add('response730value');
@@ -324,6 +365,7 @@ function generateResponseGraph730(data7) {
   });
 }
 
+
 // APDEX All Time AVR
 async function getAllTimeApdex(data9) {
   try {
@@ -347,6 +389,12 @@ function generateApdexAllTimeGraph(data10) {
     bar.classList.add('apdexAllBar');
     bar.style.height = `${(value / maxValue) * 100}%`;
     bar.style.left = `${index * 102 + 0}px`;
+
+    if (value >= 0.8 && value < 0.9) {
+      bar.style.backgroundColor = 'yellow';
+    } else if (value < 0.8) {
+      bar.style.backgroundColor = '#cc0003';
+    }
 
     const valueDisplay = document.createElement('div');
     valueDisplay.classList.add('apdexAllValue');
@@ -385,6 +433,16 @@ function generateResponseGraphAllTime(data9) {
     const bar = document.createElement('div');
     bar.classList.add('responseAllTimeBar');
     bar.style.height = `${(value / maxValue) * 100}%`;
+
+    switch (labels[index]) {
+      case '2000ms':
+      case '4000ms':
+        bar.style.backgroundColor = 'yellow';
+        break;
+      case 'Fail':
+        bar.style.backgroundColor = '#cc0003';
+        break;
+    }
 
     const valueDisplay = document.createElement('div');
     valueDisplay.classList.add('responseAllTimeValue');
@@ -466,6 +524,7 @@ function generateNPM(data, x, y) {
 // Usage
 fetchData(endpoints.endpoint1).then(data => {
   setStatusColor(data);
+  console.log(data);
   getPercent(data).then(percent => {
     if (percent !== null) {
       const percentDiv = document.getElementById('percent');
@@ -511,7 +570,9 @@ fetchData(endpoints.endpoint3).then(data3 => {
       timingData.under4000 - timingData.under2000,
       data3.requests.failures  
     ];
-    generateResponseGraph(responseData);
+    if (window.innerWidth > 1660) {
+      generateResponseGraph(responseData);
+    };
     getResponse(data3).then(response24 => {
       if (response24 !== null) {
         const response24Div = document.getElementById('response24');
@@ -530,7 +591,9 @@ fetchData(endpoints.endpoint4).then(data4 => {
   });
   apdex24Values(data4).then(apdex24Values => {
     if (apdex24Values !== null) {
-      generateApdexGraph(apdex24Values);
+      if (window.innerWidth > 1660) {
+        generateApdexGraph(apdex24Values);
+      };
     }
   });
 });
@@ -563,7 +626,9 @@ fetchData(endpoints.endpoint6).then(data6 => {
       timingData.under4000 - timingData.under2000,
       data6.requests.failures  
     ];
-    generateResponseGraph730(responseData);
+    if (window.innerWidth > 1660) {
+      generateResponseGraph730(responseData);
+    };
   };
 });
 
@@ -573,7 +638,9 @@ fetchData(endpoints.endpoint7).then(data7 => {
 
   apdex24Values(slicedData7).then(apdex730Values => {
     if (apdex730Values !== null) {
-      generateApdex730Graph(apdex730Values);
+      if (window.innerWidth > 1660) {
+        generateApdex730Graph(apdex730Values);
+      };
     }
   });
 });
@@ -606,7 +673,9 @@ fetchData(endpoints.endpoint9).then(data9 => {
       timingData.under4000 - timingData.under2000,
       data9.requests.failures  
     ];
-    generateResponseGraphAllTime(responseData);
+    if (window.innerWidth > 1660) {
+      generateResponseGraphAllTime(responseData);
+    };
   };
 });
 
@@ -615,7 +684,9 @@ fetchData(endpoints.endpoint10).then(data10 => {
   const slicedData10 = dataArray.slice(0, 12);
   apdex24Values(slicedData10).then(apdexAllTimeValues => {
     if (apdexAllTimeValues !== null) {
-      generateApdexAllTimeGraph(apdexAllTimeValues);
+      if (window.innerWidth > 1660) {
+        generateApdexAllTimeGraph(apdexAllTimeValues);
+      };
     }
   });
 })
