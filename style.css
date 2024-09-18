@@ -140,18 +140,35 @@ h1, h2, h3 {
 }
 
 /* APDEX 24hr */
-.apdex {
-    color: white;
-    margin-top: 5%;
-    margin-left: 7%;
-    font-size: 30px;
+@media (min-width: 1670px) {
+    .apdex {
+        color: white;
+        margin-top: 5%;
+        margin-left: 7%;
+        font-size: 30px;
+    }
+    .apdexCValue {
+        text-align: right;
+        color: #1EB300;
+        padding-top: 10px;
+        margin-right: 88%;
+        font-size: 40px;
+    }   
 }
-.apdexCValue {
-    text-align: right;
-    color: #1EB300;
-    padding-top: 10px;
-    margin-right: 88%;
-    font-size: 40px;
+@media (max-width: 1669px) {
+    .apdex {
+        text-align: center;
+        color: white;
+        margin-top: 5%;
+        margin-left: 7%;
+        font-size: 30px;
+    }
+    .apdexCValue {
+        text-align: center;
+        color: #1EB300;
+        padding-top: 10px;
+        font-size: 40px;
+    }
 }
 @media (min-width: 1670px) {
     .apdex24graphContainer {
@@ -188,21 +205,39 @@ h1, h2, h3 {
 }
 
 /* Response 24hr */ 
-.response {
-    color: white;
-    margin-top: 7%;
-    margin-left: 4.2%;
-    font-size: 30px;
-    width: 20%;
+@media (min-width: 1670px) {
+    .response {
+        color: white;
+        margin-top: 7%;
+        margin-left: 4.2%;
+        font-size: 30px;
+        width: 20%;
+    }
+    .responseCValue {
+        text-align: right;
+        color: #1EB300;
+        padding-top: 10px;
+        margin-right: 88%;
+        font-size: 40px;
+    } 
 }
-.responseCValue {
-    text-align: right;
-    color: #1EB300;
-    padding-top: 10px;
-    margin-right: 88%;
-    font-size: 40px;
+@media (max-width: 1669px) {
+    .response {
+        text-align: center;
+        color: white;
+        margin-top: 7%;
+        margin-left: 4.2%;
+        font-size: 30px;
+    }
+    .responseCValue {
+        text-align: center;
+        color: #1EB300;
+        padding-top: 10px;
+        font-size: 40px;
+        padding-bottom: 30px;
+    }
 }
-@media (min-width: 1669px) {
+@media (min-width: 1660px) {
     .response24graphContainer {
         color: white;
         width: 1210px;
